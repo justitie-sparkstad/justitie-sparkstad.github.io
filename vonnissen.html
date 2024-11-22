@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vonnissen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label, input, select, textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .verdachte-feiten-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .verdachte-feiten-item input, .verdachte-feiten-item select {
+            flex: 1;
+            margin-right: 5px;
+        }
+
+        #code-output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Stijl voor de vonnissenlijst */
+        #vonnis-list {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .vonnis-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .vonnis-card:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .vonnis-header {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .vonnis-body {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .vonnis-footer {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .vonnis-footer span {
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Knop om vonnis toe te voegen */
+        .vonnis-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .home-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #00427f; /* Blauwe achtergrond */
+            color: rgb(202, 141, 141); /* Witte tekst */
+            text-decoration: none; /* Geen onderstreping */
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px; /* Ronde hoeken */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+        }
+        
+        .home-button:hover {
+            background-color: #0061a6; /* Iets lichtere kleur bij hover */
+            transform: scale(1.05); /* Een subtiele vergroting bij hover */
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="home-button">Homepagina</a>
+    <h2>Huidige Vonnissen</h2>
+    <div id="vonnis-list">
+        <!-- Hier komen de vonnissen dynamisch -->
+    </div>
+<h1>Vonnis Toevoegen</h1>
+<form id="vonnis-form">
+    <label for="zaaknummer">Zaaknummer:</label>
+    <input type="text" id="zaaknummer" required><br>
+
+    <label for="rechter">Rechter:</label>
+    <select id="rechter" required>
+        <option value="">Kies een rechter</option>
+        <option value="Nathalie de Vos">Dhr, C. Velde</option>
+        <option value="Jan Jansen">Mevr, Nathalie</option>
+        <option value="Meervoudige Kamer">Meervoudige Kamer</option>
+        <!-- Voeg hier meer rechters toe -->
+    </select><br>
+
+    <label for="verdachte">Verdachte:</label>
+    <input type="text" id="verdachte" required><br>
+
+    <label for="feitenrelaas">Feitenrelaas:</label>
+    <textarea id="feitenrelaas" required></textarea><br>
+
+    <label for="uitspraak">Uitspraak:</label>
+    <textarea id="uitspraak" required></textarea><br>
+
+    <label for="strafmaat">Strafmaat:</label>
+    <input type="text" id="strafmaat" required><br>
+
+    <label for="proceskosten">Proceskosten:</label>
+    <input type="text" id="proceskosten" required><br>
+
+    <label for="zittingsdatum">Zittingsdatum:</label>
+    <input type="date" id="zittingsdatum" required><br>
+
+    <label for="verdachteFeiten">Verdachte Feiten:</label>
+    <div id="verdachteFeiten">
+        <div class="verdachte-feiten-item">
+            <input type="text" id="zoekFeit" oninput="zoekFeit()" placeholder="Zoek een strafbaar feit" />
+            <select class="feiten" id="feitSelect" required>
+                <!-- De lijst van strafbare feiten wordt hier dynamisch geladen -->
+            </select>
+            <select class="vervolging" required>
+                <option value="schuldig">Schuldig</option>
+                <option value="onbekend">Onbekend</option>
+                <option value="vrijspraak">Vrijspraak</option>
+            </select>
+            <button type="button" class="remove-item" onclick="removeFeit(this)">Verwijder</button>
+        </div>
+    </div>
+    <button type="button" onclick="addFeit()">Voeg een ander feit toe</button><br>
+
+    <button type="submit">Vonnis Toevoegen</button>
+</form>
+
+
+
+<h2>Gegenereerde Code</h2>
+<textarea id="code-output" readonly></textarea>
+
+<script>
+// Array voor vonnissen die je zelf in de HTML code toevoegt
+const strafbareFeiten = [
+    "Bedreiging",
+    "Diefstal",
+    "Vermogenfraude",
+    "Valse aangifte",
+    "Witwassen",
+    "Ongelooflijke roddels verspreiden",
+    "Hacking",
+    "Verkrachting",
+    "Mishandeling",
+    "Brandstichting",
+    // Voeg hier meer strafbare feiten toe
+];
+
+function zoekFeit() {
+    const zoekTerm = document.getElementById("zoekFeit").value.toLowerCase();
+    const feitSelect = document.getElementById("feitSelect");
+
+    // Filter de strafbare feiten
+    const gefilterdeFeiten = strafbareFeiten.filter(feit => feit.toLowerCase().includes(zoekTerm));
+
+    feitSelect.innerHTML = ""; // Clear current options
+
+    // Voeg gefilterde feiten opnieuw toe aan de select lijst
+    gefilterdeFeiten.forEach(feit => {
+        const option = document.createElement("option");
+        option.value = feit;
+        option.textContent = feit;
+        feitSelect.appendChild(option);
+    });
+}
+
+const vonnissen = [
+    {
+        zaaknummer: "SPK2024/1145",
+        rechter: "Nathalie de Vos",
+        verdachte: "John Beer",
+        feitenrelaas: "John Beer werd opgeroepen voor de politierechter wegens verdenking van bedreiging (Art. 285 Wetboek van Strafrecht)...",
+        uitspraak: "De rechtbank stelt vast dat het bericht door de verdachte gevoelens van angst heeft veroorzaakt...",
+        strafmaat: "Geldboete van €250, vervangende hechtenis bij niet-betaling.",
+        proceskosten: "De proceskosten worden niet verhaald.",
+        zittingsdatum: "Zondag 17 november 2024",
+        verdachteFeiten: ["Bedreiging"],
+        vervolging: ["schuldig"]
+    },
+    {
+        zaaknummer: "Vonnisnummer: SPK2024/1145",
+        rechter: "sas",
+        verdachte: "sas",
+        feitenrelaas: "assa",
+        uitspraak: "asas",
+        strafmaat: "asas",
+        proceskosten: "asas",
+        zittingsdatum: "2024-11-06",
+        verdachteFeiten: ["cas"],
+        vervolging: ["vrijspraak"]
+    },
+    // Voeg hier meer vonnissen toe
+];
+
+function laadFeiten() {
+    const feitSelect = document.getElementById("feitSelect");
+    feitSelect.innerHTML = ""; // Clear current options
+    strafbareFeiten.forEach(feit => {
+        const option = document.createElement("option");
+        option.value = feit;
+        option.textContent = feit;
+        feitSelect.appendChild(option);
+    });
+}
+// Functie om vonnissen te tonen in een nette lijst
+function displayVonnissen() {
+    const vonnisListElement = document.getElementById('vonnis-list');
+    vonnisListElement.innerHTML = '';
+
+    vonnissen.forEach(vonnis => {
+        const vonnisCard = document.createElement('div');
+        vonnisCard.classList.add('vonnis-card');
+
+        vonnisCard.innerHTML = `
+            <div class="vonnis-header">
+                Vonnisnummer: ${vonnis.zaaknummer} - Rechter: ${vonnis.rechter}
+            </div>
+            <div class="vonnis-body">
+                <strong>Verdachte:</strong> ${vonnis.verdachte}<br>
+                <strong>Feitenrelaas:</strong> ${vonnis.feitenrelaas}<br>
+                <strong>Uitspraak:</strong> ${vonnis.uitspraak}<br>
+                <strong>Strafmaat:</strong> ${vonnis.strafmaat}<br>
+                <strong>Proceskosten:</strong> ${vonnis.proceskosten}<br>
+                <strong>Zittingsdatum:</strong> ${vonnis.zittingsdatum}<br>
+                <strong>Verdachte Feiten en Vervolgingen:</strong><br>
+                ${vonnis.verdachteFeiten.map((feit, index) => `${feit} - Vervolging: ${vonnis.vervolging[index]}`).join('<br>')}
+            </div>
+            <div class="vonnis-footer">
+                <span><strong>Zittingsdatum:</strong> ${vonnis.zittingsdatum}</span>
+            </div>
+        `;
+
+        vonnisListElement.appendChild(vonnisCard);
+    });
+}
+
+// Functie om een nieuw feit toe te voegen
+function addFeit() {
+    const feitContainer = document.createElement('div');
+    feitContainer.classList.add('verdachte-feiten-item');
+    feitContainer.innerHTML = `
+        <input type="text" placeholder="Voeg een strafbaar feit toe" class="feiten" required>
+        <select class="vervolging" required>
+            <option value="schuldig">Schuldig</option>
+            <option value="onbekend">Onbekend</option>
+            <option value="vrijspraak">Vrijspraak</option>
+        </select>
+        <button type="button" class="remove-item" onclick="removeFeit(this)">Verwijder</button>
+    `;
+    document.getElementById('verdachteFeiten').appendChild(feitContainer);
+}
+
+// Functie om een feit te verwijderen
+function removeFeit(button) {
+    button.parentElement.remove();
+}
+
+// Functie om de gegenereerde code weer te geven
+document.getElementById('vonnis-form').onsubmit = function(event) {
+    event.preventDefault();
+
+    const zaaknummer = document.getElementById('zaaknummer').value;
+    const rechter = document.getElementById('rechter').value;
+    const verdachte = document.getElementById('verdachte').value;
+    const feitenrelaas = document.getElementById('feitenrelaas').value;
+    const uitspraak = document.getElementById('uitspraak').value;
+    const strafmaat = document.getElementById('strafmaat').value;
+    const proceskosten = document.getElementById('proceskosten').value;
+    const zittingsdatum = document.getElementById('zittingsdatum').value;
+
+    const verdachteFeiten = [];
+    const vervolging = [];
+    document.querySelectorAll('.verdachte-feiten-item').forEach(item => {
+        verdachteFeiten.push(item.querySelector('.feiten').value);
+        vervolging.push(item.querySelector('.vervolging').value);
+    });
+
+    const vonnis = {
+        zaaknummer,
+        rechter,
+        verdachte,
+        feitenrelaas,
+        uitspraak,
+        strafmaat,
+        proceskosten,
+        zittingsdatum,
+        verdachteFeiten,
+        vervolging
+    };
+
+    vonnissen.push(vonnis); // Voeg het vonnis toe aan de lijst
+    displayVonnissen(); // Werk de lijst bij
+
+    const codeOutput = document.getElementById('code-output');
+    codeOutput.value = `{\n    zaaknummer: "${zaaknummer}",\n    rechter: "${rechter}",\n    verdachte: "${verdachte}",\n    feitenrelaas: "${feitenrelaas}",\n    uitspraak: "${uitspraak}",\n    strafmaat: "${strafmaat}",\n    proceskosten: "${proceskosten}",\n    zittingsdatum: "${zittingsdatum}",\n    verdachteFeiten: ${JSON.stringify(verdachteFeiten)},\n    vervolging: ${JSON.stringify(vervolging)}\n  },`;
+
+    return false;
+};
+
+// Genereer de lijst van vonnissen bij pagina-inlading
+window.onload = function() {
+    // Roep beide functies aan
+    displayVonnissen();  // Genereer de lijst van vonnissen
+    laadFeiten();        // Laad de originele lijst van strafbare feiten
+};
+
+
+</script>
+
+</body>
+</html>
