@@ -1,0 +1,130 @@
+/* Algemene opmaak */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('achtergrond.jpg'); /* Achtergrondafbeelding */
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    background-color: rgba(51, 51, 51, 0.7); /* Semi-transparante achtergrond */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    max-width: 600px; /* Maximale breedte van de inhoud */
+    margin: 0 auto; /* Centreren van inhoud */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparante achtergrond voor de inhoud */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centreren van inhoud */
+}
+
+button:hover {
+    background-color: #0056b3; /* Donkerder blauwe kleur bij hover */
+}
+
+/* Knopstijl */
+.button {
+    display: inline-block;
+    background-color: #007bff; /* Blauwe kleur */
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin: 10px; /* Ruimte tussen knoppen */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Donkerder blauwe kleur bij hover */
+}
+
+/* Logo van de Orde van Advocaten */
+.logo {
+    display: block;
+    margin: 0 auto; /* Centreren van het logo */
+    max-width: 200px; /* Optioneel: aanpassen aan de grootte van het logo */
+}
+
+/* Dropdown-menu stijl */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #0056b3;
+}
+
+/* Formulierstijl */
+form {
+    display: block;
+    max-width: 400px; /* Aanpassen aan de gewenste breedte */
+    margin: 0 auto; /* Centreren van het formulier */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparante achtergrond voor het formulier */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px; /* Ruimte onder elk invoerveld */
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
