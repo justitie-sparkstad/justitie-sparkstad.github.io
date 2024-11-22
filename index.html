@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sparkstad Justitie</title>
     <style>
+        /* Algemene stijlregels */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -13,36 +14,48 @@
             color: #333;
         }
 
+        /* Header stijl */
         header {
-            background-color: #2c3e50;
+            background: linear-gradient(90deg, #ff5733, #ffc300, #28a745, #007bff);
             color: #fff;
-            padding: 20px;
             text-align: center;
+            padding: 20px 10px;
+        }
+
+        header img {
+            width: 80px;
+            height: auto;
+            border-radius: 50%;
         }
 
         header h1 {
-            margin: 0;
+            margin: 10px 0 0;
             font-size: 2.5rem;
         }
 
+        /* Navigatiebalk */
         nav {
-            background-color: #34495e;
-            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         nav a {
-            color: #fff;
+            color: #333;
             text-decoration: none;
             margin: 0 15px;
             font-weight: bold;
+            font-size: 1.1rem;
         }
 
         nav a:hover {
-            text-decoration: underline;
+            color: #007bff;
         }
 
+        /* Hoofdcontainer */
         .container {
             padding: 20px;
             max-width: 1200px;
@@ -51,12 +64,13 @@
 
         .welcome-section {
             text-align: center;
-            padding: 50px 0;
+            padding: 50px 10px;
         }
 
         .welcome-section h2 {
             font-size: 2rem;
             margin-bottom: 20px;
+            color: #007bff;
         }
 
         .welcome-section p {
@@ -64,17 +78,44 @@
             line-height: 1.6;
         }
 
+        /* Footer stijl */
         footer {
-            background-color: #2c3e50;
+            background: linear-gradient(90deg, #007bff, #28a745, #ffc300, #ff5733);
             color: #fff;
             text-align: center;
-            padding: 10px 0;
+            padding: 10px 20px;
             margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsief ontwerp */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                margin: 10px 5px;
+                font-size: 1rem;
+            }
+
+            .welcome-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .welcome-section p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
+        <img src="https://via.placeholder.com/80" alt="Sparkstad Justitie Logo">
         <h1>Welkom bij Sparkstad Justitie</h1>
     </header>
     <nav>
