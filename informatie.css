@@ -1,0 +1,97 @@
+/* Algemene Stijlen */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    background-color: #00427f;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header .logo {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+#searchBar {
+    margin-top: 10px;
+    padding: 10px;
+    width: 80%;
+    max-width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* FAQ Item */
+.faq-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 15px 0;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faq-title {
+    font-size: 1.5em;
+    margin: 0 0 10px;
+    color: #00427f;
+}
+
+.faq-category {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.faq-text {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+    background-color: #00427f;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+/* Homepagina Button */
+.home-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #00427f; /* Blauwe achtergrond */
+    color: rgb(202, 141, 141); /* Witte tekst */
+    text-decoration: none; /* Geen onderstreping */
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 5px; /* Ronde hoeken */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.home-button:hover {
+    background-color: #0061a6; /* Iets lichtere kleur bij hover */
+    transform: scale(1.05); /* Een subtiele vergroting bij hover */
+}

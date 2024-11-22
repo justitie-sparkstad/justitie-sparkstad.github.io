@@ -1,0 +1,98 @@
+/* Algemene Stijlen */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f9;
+}
+
+/* Header */
+.header {
+    background-color: #00427f;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.header .logo {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.header .tagline {
+    font-size: 1.2em;
+    margin: 5px 0 0;
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Dropdown Navigation */
+.navigation {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.nav-btn {
+    background-color: #00427f;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background-color: #0061a6;
+}
+
+.nav-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+    min-width: 200px;
+}
+
+.nav-content a {
+    color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.nav-content a:hover {
+    background-color: #f0f0f0;
+}
+
+.navigation:hover .nav-content {
+    display: block;
+}
+
+/* Footer */
+.footer {
+    background-color: #00427f;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
